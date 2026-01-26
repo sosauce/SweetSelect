@@ -48,7 +48,7 @@ class MainActivity: ComponentActivity() {
             MaterialExpressiveTheme(
                 colorScheme = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicDarkColorScheme(LocalContext.current) else darkColorScheme()
             ) {
-                val sweetState = rememberSweetSelectState<Item>()
+                val sweetState = rememberSweetSelectState<Item>(2)
                 val items = remember { List(100) { Item() } }
 
                 Scaffold(
@@ -79,9 +79,7 @@ class MainActivity: ComponentActivity() {
                             key = { it.number }
                         ) { item ->
 
-                            val isSelected by remember {
-                                derivedStateOf { sweetState.isSelected(item) }
-                            }
+                            val isSelected by sweetState.isSelectedAsState(item)
 
                             Row(
                                 modifier = Modifier
