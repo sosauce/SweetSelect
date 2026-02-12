@@ -5,8 +5,6 @@ plugins {
 
 android {
     namespace = "com.sosauce.sweetselect.compose"
-    group = "com.github.sosauce"
-    version = "1.0.0"
     compileSdk {
         version = release(36)
     }
@@ -37,6 +35,9 @@ android {
         compose = true
     }
 }
+
+group = "com.github.sosauce"
+version = "1.0.0"
 
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
