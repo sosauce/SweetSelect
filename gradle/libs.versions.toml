@@ -1,12 +1,14 @@
 [versions]
 agp = "9.0.0"
-activityCompose = "1.12.2"
-material3 = "1.5.0-alpha12"
-composeBom = "2026.01.00"
-kotlin = "2.3.0"
+activityCompose = "1.12.4"
+foundation = "1.10.3"
+material3 = "1.5.0-alpha14"
+composeBom = "2026.02.00"
+kotlin = "2.3.10"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "foundation" }
 androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
 androidx-ui = { module = "androidx.compose.ui:ui" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }

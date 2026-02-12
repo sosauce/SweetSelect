@@ -17,6 +17,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -44,11 +47,12 @@ class MainActivity: ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+
         setContent {
             MaterialExpressiveTheme(
                 colorScheme = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) dynamicDarkColorScheme(LocalContext.current) else darkColorScheme()
             ) {
-                val sweetState = rememberSweetSelectState<Item>(2)
+                val sweetState = rememberSweetSelectState<Item>(maxSelectable = 5)
                 val items = remember { List(100) { Item() } }
 
                 Scaffold(
@@ -86,15 +90,10 @@ class MainActivity: ComponentActivity() {
                                     .fillMaxWidth()
                                     .padding(5.dp)
                                     .height(70.dp)
-                                    .combinedClickable(
-                                        onClick = {
-                                            if (sweetState.isInSelectionMode) {
-                                                sweetState.toggle(item)
-                                            } else {
-                                                // do something
-                                            }
-                                        },
-                                        onLongClick = { sweetState.toggle(item) }
+                                    .sweetClickable(
+                                        item = item,
+                                        state = sweetState,
+                                        onClick = {}
                                     )
                             ) {
                                 Text(item.number.toString())
