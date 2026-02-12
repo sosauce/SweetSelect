@@ -1,4 +1,7 @@
-<p align=center> 🛠️ A Compose library that makes multi-selection really easy and highly optimized, with support for a finite amount of selectable elements!</p>
+<h1 align=center>Sweet select</h1>
+<p align=center> 
+    🛠️ A Compose library that makes multi-selection really easy and highly optimized, with support for a finite amount of selectable elements!
+</p>
 
 ## ⬇️ Download
 
@@ -56,7 +59,7 @@ LazyColumn {
     }
 }
 ```
-Optionally, if you can't or don't want to pass a .sweetClickable() modifier, you can use `SweetSelectState`'s APIs to build your own selection logic! (Read the APIs [documentation](#doc) to better understand how)
+Optionally, if you can't or don't want to pass a .sweetClickable() modifier, you can use `SweetSelectState`'s APIs to build your own selection logic! (Read the APIs documentation to better understand how)
 
 ## 📝 Documentation
 All APIs are documented below and in the code
