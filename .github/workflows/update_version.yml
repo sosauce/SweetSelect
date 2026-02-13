@@ -1,7 +1,10 @@
 name: Update README Version
 on:
-  release:
-    types: [published]
+  push:
+    tags:        
+      - '*'
+on: workflow_dispatch
+
 
 jobs:
   update-readme:
