@@ -1,48 +1,33 @@
-name: Update README Version
-on:
-  push:
-    tags:        
-      - '*'
-  workflow_dispatch:
+name: Update version
 
+on:
+  release:
+    types: [published]
+  workflow_dispatch: 
 
 jobs:
-  update-readme:
+  publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
 
-      - name: Clean Version String
-        id: version
-        run: |
-          CLEAN_VER=$(echo "${{ github.event.release.tag_name }}" | sed 's/^v//')
-          echo "clean=$CLEAN_VER" >> $GITHUB_OUTPUT
-
-      # Step A: Update the implementation line
-      - name: Update Implementation Line
-        uses: jaywcjlove/github-action-modify-file-content@v2
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          path: README.md
-          body: 'implementation("io.github.sosauce:sweetselect-compose:${{ steps.version.outputs.clean }}")'
-          openDelimiter: ''
-          closeDelimiter: ''
+          fetch-depth: 0
+          ref: main 
 
-      # Step B: Update the Version Catalog line
-      - name: Update Version Catalog
-        uses: jaywcjlove/github-action-modify-file-content@v2
+
+      - name: Update files
+        uses: MathieuSoysal/file-updater-for-release@v1.0.1
         with:
-          path: README.md
-          body: 'sweetselectCompose = "${{ steps.version.outputs.clean }}"'
-          openDelimiter: ''
-          closeDelimiter: ''
-
-      - name: Commit and Push
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "docs: update README version to ${{ steps.version.outputs.clean }}" || echo "No changes to commit"
-          git push
+          files: README.md # List of files to update
+          prefix: "io.github.sosauce:sweetselect-compose:" 
+          with-checkout: false 
+      
+      - name: Push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
+          add: .
+          message: 'update files'
