@@ -12,11 +12,11 @@ If you're using Version Catalog, you can configure the dependency by adding it t
 ```toml
 [versions]
 #...
-LIB_VERSION = "VERSION"
+sweetselectCompose = "$LATEST_VERSION"
 
 [libraries]
 #...
-LIB_NAME = { module = "LIB_MODULE", version.ref = "LIB_VERSION" }
+sweetselect-compose = { module = "io.github.sosauce:sweetselect-compose", version.ref = "sweetselectCompose" }
 ```
 
 ### 🐘 Gradle
@@ -24,10 +24,12 @@ Add the dependency below to your **module**'s `build.gradle.kts` file:
 
 ```gradle
 dependencies {
-    implementation("LIB_MODULE:LIB_VERSION")
+    implementation("io.github.sosauce:sweetselect-compose:$LATEST_VERSION")
+
     
     // if you're using Version Catalog
-    implementation(VC_REFERENCE)
+    implementation(libs.sweetselect.compose)
+
 }
 ```
 
