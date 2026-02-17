@@ -16,7 +16,7 @@ import kotlin.math.max
 @Composable
 fun <T> rememberSweetSelectState(
     initialSelectedItems: Collection<T> = emptySet(),
-    maxSelectable: Long = Long.MAX_VALUE
+    maxSelectable: Int = Int.MAX_VALUE
 ): SweetSelectState<T> {
     return rememberSaveable(saver = SweetSelectState.Saver(maxSelectable)) { SweetSelectState(initialSelectedItems, maxSelectable) }
 }
@@ -26,7 +26,7 @@ fun <T> rememberSweetSelectState(
  */
 class SweetSelectState<T>(
     private val initialSelectedItems: Collection<T>,
-    private val maxSelectable: Long
+    private val maxSelectable: Int
 ) {
     /**
      * Mutable set of all selected items
@@ -75,11 +75,17 @@ class SweetSelectState<T>(
         return if (selectedItems.containsAll(items)) {
             _selectedItems.removeAll(items)
         } else {
-            val remainingSlots = (maxSelectable - selectedItems.size).toInt()
+            val remainingSlots = maxSelectable - selectedItems.size
             val toAdd = items.filter { it !in selectedItems }.take(remainingSlots)
             _selectedItems.addAll(toAdd)
         }
     }
+    /**
+     * Adds all items without removing them if some were already selected
+     * @param items Items to select.
+     * @return Whether all items have been added or not
+     */
+    fun addAll(items: Collection<T>): Boolean = _selectedItems.addAll(items)
 
     /**
      * Checks whether a given item is selected or not. Use [isSelectedAsState] in a Composable
@@ -102,7 +108,7 @@ class SweetSelectState<T>(
     fun clearSelected() = _selectedItems.clear()
 
     companion object {
-        fun <T> Saver(maxSelectable: Long): Saver<SweetSelectState<T>, *> = Saver(
+        fun <T> Saver(maxSelectable: Int): Saver<SweetSelectState<T>, *> = Saver(
             save = { it.selectedItems.toList() }, // Transform Set to List for serializing
             restore = { SweetSelectState(initialSelectedItems = it, maxSelectable = maxSelectable) }
         )
