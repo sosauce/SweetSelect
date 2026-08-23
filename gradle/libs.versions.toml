@@ -1,19 +1,15 @@
 [versions]
-agp = "9.0.0"
-activityCompose = "1.12.4"
-foundation = "1.10.3"
-material3 = "1.5.0-alpha14"
-composeBom = "2026.02.00"
-kotlin = "2.3.10"
-sweetselectCompose = "1.0.0"
+agp = "9.3.1"
+activityCompose = "1.13.0"
+material3 = "1.5.0-alpha26"
+composeBom = "2026.08.00"
+kotlin = "2.4.10"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
-androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "foundation" }
 androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
 androidx-ui = { module = "androidx.compose.ui:ui" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
-sweetselect-compose = { module = "io.github.sosauce:sweetselect-compose", version.ref = "sweetselectCompose" }
 
 
 [plugins]

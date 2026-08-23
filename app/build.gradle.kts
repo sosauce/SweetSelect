@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId = "com.sosauce.sweetselect"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -39,8 +39,8 @@ android {
 
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
+    implementation(project(":SweetSelect"))
     implementation(libs.androidx.ui)
-    implementation(libs.sweetselect.compose)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.material3)
 }

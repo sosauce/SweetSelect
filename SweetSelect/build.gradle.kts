@@ -1,15 +1,15 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.compose.compiler)
-    id("com.vanniktech.maven.publish") version "0.36.0"}
+    id("com.vanniktech.maven.publish") version "0.37.0"}
 
 
 group = "io.github.sosauce"
-version = "1.0.0"
+version = "1.0.1"
 
 android {
     namespace = "com.sosauce.sweetselect.compose"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 24
